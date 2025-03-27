@@ -98,13 +98,13 @@ pip3 install -r lambda/requirements.txt --target lambda
 cd lambda
 
 # Create a zip file with all the files from the `lambda` folder
-zip -r ../deploy-package.zip .
+zip -r ../deploy-artifacts.zip .
 
 # Go back to the previous directory i.e localstack directory
 cd -
 
 # Create a function using the created zip file
-awslocal lambda create-function --function-name my-function --runtime python3.13 --zip-file fileb://deploy-package.zip --handler lambda.lambda_handler --environment Variables={ENVIRONMENT=local} --role arn:aws:iam::000000000000:role/service-role/MyTestFunction-role
+awslocal lambda create-function --function-name my-function --runtime python3.13 --zip-file fileb://deploy-artifacts.zip --handler lambda.lambda_handler --environment Variables={ENVIRONMENT=local} --role arn:aws:iam::000000000000:role/service-role/MyTestFunction-role
 
 # Check the provisioning state of the lambda function
 awslocal lambda get-function --function-name my-function
